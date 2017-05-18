@@ -1,0 +1,11 @@
+FROM ubuntu:trusty
+
+RUN apt-get update
+RUN apt-get install -y python-pip
+
+## This is a working solution, but this will force to always cache after this line next docker layers of this image.
+ADD http://www.random.org/strings/?num=10&len=8&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain&rnd=new uuid
+
+
+ADD requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
